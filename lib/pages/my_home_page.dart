@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:gym_guide_app/data/exercise.dart';
 
 import 'package:gym_guide_app/data/widget_category_list.dart';
+import 'package:gym_guide_app/pages/bmi_calculator_page.dart';
+import 'package:gym_guide_app/pages/filter_page.dart';
 import 'package:gym_guide_app/widget/exercise_card_widget.dart';
 import 'package:gym_guide_app/widget/workout_category_widget.dart';
 
@@ -20,7 +22,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer:  Drawer(
+      drawer: Drawer(
         child: Column(
           children: [
             Container(
@@ -28,10 +30,26 @@ class _MyHomePageState extends State<MyHomePage> {
               width: double.infinity,
               color: Color(0xFF322751),
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text("GYMGUIDE",style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),),
+                padding:  EdgeInsets.only(top: 50, left: 20),
+                child: Text(
+                  "GYMGUIDE",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25),
+                ),
               ),
             ),
+            ListTile(title: Text("BMI Calculator"),
+            onTap: (){
+              Navigator.of(context).pushNamed(BMICalculatorPage.routeName);
+            },
+            ),
+            Divider(),
+            ListTile(title: Text("FIlter"),
+              onTap: (){
+                Navigator.of(context).pushNamed(FilterPage.routeName);
+              },),
           ],
         ),
       ),
@@ -56,12 +74,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: const Text(
           "Welcome Nur",
           style: TextStyle(
-              fontStyle: FontStyle.italic,
-              fontWeight: FontWeight.bold,
-              fontSize: 25,
+            fontStyle: FontStyle.italic,
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
             color: Color(0xffFFFFFF),
           ),
-
         ),
         actions: const [
           Padding(
