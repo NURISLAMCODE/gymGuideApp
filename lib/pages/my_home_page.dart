@@ -19,7 +19,43 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const Drawer(),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            Container(
+              height: 120,
+              width: double.infinity,
+              color: const Color(0xFF322751),
+              child: const Padding(
+                padding: EdgeInsets.only(top: 50, left: 30),
+                child: Text(
+                  "GYM GUIDE",
+                  style: TextStyle(color: Colors.white, fontSize: 30),
+                ),
+              ),
+            ),
+            const ListTile(
+              title: Text(
+                "BMI CALCULATOR",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+              ),
+            ),
+            const Divider(),
+            const ListTile(
+              title: Text(
+                "Filter",
+                style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+            )
+          ],
+        ),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (value) {
           _index = value;
@@ -43,7 +79,8 @@ class _MyHomePageState extends State<MyHomePage> {
           style: TextStyle(
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.bold,
-              fontSize: 25),
+              fontSize: 25,
+              color: Colors.white),
         ),
         actions: const [
           Padding(
