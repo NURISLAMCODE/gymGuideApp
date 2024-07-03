@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gym_guide_app/data/exercise.dart';
 
 import 'package:gym_guide_app/data/widget_category_list.dart';
+import 'package:gym_guide_app/pages/bmi_cal_page.dart';
+import 'package:gym_guide_app/pages/filter_page.dart';
 import 'package:gym_guide_app/widget/exercise_card_widget.dart';
 import 'package:gym_guide_app/widget/workout_category_widget.dart';
 
@@ -34,24 +36,36 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            const ListTile(
-              title: Text(
+            ListTile(
+              title: const Text(
                 "BMI CALCULATOR",
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 20),
               ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const BMICalPage()),
+                );
+              },
             ),
             const Divider(),
-            const ListTile(
-              title: Text(
+            ListTile(
+              title: const Text(
                 "Filter",
-                style: const TextStyle(
+                style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
                     fontWeight: FontWeight.bold),
               ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const FilterPage()),
+                );
+              },
             )
           ],
         ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gym_guide_app/app_state.dart';
 import 'package:gym_guide_app/model/exercise_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:gym_guide_app/pages/exercise_details_page.dart';
+import 'package:gym_guide_app/pages/filter_page.dart';
 
 class ExerciseCardWidget extends StatelessWidget {
   final ExerciseModel exreciseModel;
@@ -93,11 +95,17 @@ class ExerciseCardWidget extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: Text(
-                "Equipment: ${exreciseModel.equipment.join(", ")}",
-                style: const TextStyle(
-                    color: Colors.grey, fontWeight: FontWeight.bold),
-              ),
+              child: AppState.selectedEquipment == Equipment.noEquipment
+                  ? Text(
+                      "No Equipment: ${exreciseModel.equipment.join(", ")}",
+                      style: const TextStyle(
+                          color: Colors.grey, fontWeight: FontWeight.bold),
+                    )
+                  : Text(
+                      "Equipment: ${exreciseModel.equipment.join(", ")}",
+                      style: const TextStyle(
+                          color: Colors.grey, fontWeight: FontWeight.bold),
+                    ),
             ),
           ],
         ),

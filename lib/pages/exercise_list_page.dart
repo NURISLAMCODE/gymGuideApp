@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:gym_guide_app/app_state.dart';
 
 import 'package:gym_guide_app/model/exercise_model.dart';
 import 'package:gym_guide_app/pages/exercise_details_page.dart';
@@ -28,20 +29,25 @@ class ExerciseListPage extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: ListView.separated(
-            physics: const BouncingScrollPhysics(),
-            itemCount: listOfExrecise.length,
-            itemBuilder: (context, index) {
-              return ExerciseCardWidget(
-                exreciseModel: listOfExrecise[index],
-              );
-            },
-            separatorBuilder: ((context, index) {
-              return const SizedBox(
-                height: 20,
-              );
-            }),
-          ),
+          child: listOfExrecise.isEmpty == true
+              ? Center(
+                  child: Text(
+                      "No Exercise with Difficulty level ${AppState.difficultyLevel}, and ${AppState.selectedEquipment.name} "),
+                )
+              : ListView.separated(
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: listOfExrecise.length,
+                  itemBuilder: (context, index) {
+                    return ExerciseCardWidget(
+                      exreciseModel: listOfExrecise[index],
+                    );
+                  },
+                  separatorBuilder: ((context, index) {
+                    return const SizedBox(
+                      height: 20,
+                    );
+                  }),
+                ),
         ),
       ),
     );
