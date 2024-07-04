@@ -39,6 +39,7 @@ class WorkoutCategoryWidgets extends StatelessWidget {
               'listOfExercise': list,
               //'arg2': workoutCategoryModel.imageSource
             });
+
             // push(MaterialPageRoute(
             //   builder: (context) {
             //     return ExerciseListPage(

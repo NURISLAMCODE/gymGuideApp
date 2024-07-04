@@ -131,22 +131,30 @@ class _MyHomePageState extends State<MyHomePage> {
                       itemCount: workoutCategoryList.length,
                     ),
                   )
-                : Expanded(
-                    child: ListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return ExerciseCardWidget(
-                            exreciseModel: exerciseList
-                                .where((element) => element.isFavourite)
-                                .toList()[index],
-                          );
-                        },
-                        itemCount: exerciseList
+                : exerciseList
                             .where((element) => element.isFavourite)
                             .toList()
-                            .length),
-                  ),
+                            .isEmpty ==
+                        true
+                    ? const SizedBox(
+                        height: 500,
+                        child: Center(child: Text("No Exercise Favorite")))
+                    : Expanded(
+                        child: ListView.builder(
+                            physics: const BouncingScrollPhysics(),
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              return ExerciseCardWidget(
+                                exreciseModel: exerciseList
+                                    .where((element) => element.isFavourite)
+                                    .toList()[index],
+                              );
+                            },
+                            itemCount: exerciseList
+                                .where((element) => element.isFavourite)
+                                .toList()
+                                .length),
+                      ),
           ],
         ),
       ),

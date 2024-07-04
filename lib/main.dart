@@ -24,6 +24,12 @@ class MyApp extends StatelessWidget {
               unselectedItemColor: Colors.grey),
           appBarTheme: const AppBarTheme(
             color: Color(0xFF322751),
+            foregroundColor: Colors.white,
+          ),
+          inputDecorationTheme: InputDecorationTheme(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
           ),
           primarySwatch: Colors.blue),
       initialRoute: MyHomePage.routeName,
