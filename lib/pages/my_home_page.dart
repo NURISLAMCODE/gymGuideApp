@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gym_guide_app/data/exercise.dart';
 
@@ -21,6 +22,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       drawer: Drawer(
         child: Column(
           children: [
@@ -67,6 +69,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             )
+
+      drawer:  Drawer(
+        child: Column(
+          children: [
+            Container(
+              height: 100,
+              width: double.infinity,
+              color: Color(0xFF322751),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("GYMGUIDE",style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),),
+              ),
+            ),
+
           ],
         ),
       ),
@@ -94,7 +110,12 @@ class _MyHomePageState extends State<MyHomePage> {
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.bold,
               fontSize: 25,
+
               color: Colors.white),
+
+            color: Color(0xffFFFFFF),
+          ),
+
         ),
         actions: const [
           Padding(
