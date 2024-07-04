@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:gym_guide_app/data/exercise.dart';
 
 import 'package:gym_guide_app/data/widget_category_list.dart';
+import 'package:gym_guide_app/pages/bmi_cal_page.dart';
+import 'package:gym_guide_app/pages/filter_page.dart';
 import 'package:gym_guide_app/widget/exercise_card_widget.dart';
 import 'package:gym_guide_app/widget/workout_category_widget.dart';
 
@@ -20,6 +22,54 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      drawer: Drawer(
+        child: Column(
+          children: [
+            Container(
+              height: 120,
+              width: double.infinity,
+              color: const Color(0xFF322751),
+              child: const Padding(
+                padding: EdgeInsets.only(top: 50, left: 30),
+                child: Text(
+                  "GYM GUIDE",
+                  style: TextStyle(color: Colors.white, fontSize: 30),
+                ),
+              ),
+            ),
+            ListTile(
+              title: const Text(
+                "BMI CALCULATOR",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const BMICalPage()),
+                );
+              },
+            ),
+            const Divider(),
+            ListTile(
+              title: const Text(
+                "Filter",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const FilterPage()),
+                );
+              },
+            )
+
       drawer:  Drawer(
         child: Column(
           children: [
@@ -32,6 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text("GYMGUIDE",style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),),
               ),
             ),
+
           ],
         ),
       ),
@@ -59,6 +110,9 @@ class _MyHomePageState extends State<MyHomePage> {
               fontStyle: FontStyle.italic,
               fontWeight: FontWeight.bold,
               fontSize: 25,
+
+              color: Colors.white),
+
             color: Color(0xffFFFFFF),
           ),
 
@@ -98,22 +152,30 @@ class _MyHomePageState extends State<MyHomePage> {
                       itemCount: workoutCategoryList.length,
                     ),
                   )
-                : Expanded(
-                    child: ListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return ExerciseCardWidget(
-                            exreciseModel: exerciseList
-                                .where((element) => element.isFavourite)
-                                .toList()[index],
-                          );
-                        },
-                        itemCount: exerciseList
+                : exerciseList
                             .where((element) => element.isFavourite)
                             .toList()
-                            .length),
-                  ),
+                            .isEmpty ==
+                        true
+                    ? const SizedBox(
+                        height: 500,
+                        child: Center(child: Text("No Exercise Favorite")))
+                    : Expanded(
+                        child: ListView.builder(
+                            physics: const BouncingScrollPhysics(),
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              return ExerciseCardWidget(
+                                exreciseModel: exerciseList
+                                    .where((element) => element.isFavourite)
+                                    .toList()[index],
+                              );
+                            },
+                            itemCount: exerciseList
+                                .where((element) => element.isFavourite)
+                                .toList()
+                                .length),
+                      ),
           ],
         ),
       ),
